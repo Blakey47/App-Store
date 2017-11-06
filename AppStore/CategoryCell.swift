@@ -21,6 +21,14 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
         fatalError("init(coder:) has not been implemented")
     }
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Best New Apps"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // Creating a CollectionView within our current CollectionView
     let appsCellectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,20 +41,33 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
         return collectionView
     }()
     
+    let dividerLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.4, alpha: 0.4)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     func setupViews() {
         backgroundColor = .clear
         
         // Add collection onto the subview hierarchy
         addSubview(appsCellectionView)
+        addSubview(dividerLineView)
+        addSubview(nameLabel)
         
         appsCellectionView.dataSource = self
         appsCellectionView.delegate = self
         
         appsCellectionView.register(AppCell.self, forCellWithReuseIdentifier: cellId)
         
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": dividerLineView]))
+        
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": appsCellectionView]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": appsCellectionView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nameLabel(30)][v0][v1(0.5)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": appsCellectionView, "v1": dividerLineView, "nameLabel": nameLabel]))
     }
     
     // Adjusting the amount of cells in section
@@ -59,7 +80,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: frame.height)
+        return CGSize(width: 100, height: frame.height - 32)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
