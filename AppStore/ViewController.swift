@@ -12,8 +12,12 @@ class FeaturedAppsController: UICollectionViewController, UICollectionViewDelega
 
     private let cellId = "cellId"
     
+    var appCategories: [AppCategory]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        appCategories = AppCategory.sampleAppCategories()
         
         collectionView?.backgroundColor = .white
         
@@ -23,12 +27,18 @@ class FeaturedAppsController: UICollectionViewController, UICollectionViewDelega
     // Dequeuing the cells
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CategoryCell
+        
+        cell.appCategory = appCategories?[indexPath.item]
+        
         return cell
     }
     
     // Creating 3 cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if let count = appCategories?.count {
+            return count
+        }
+        return 0
     }
     
     // Changing the size of the collectionView Cells
