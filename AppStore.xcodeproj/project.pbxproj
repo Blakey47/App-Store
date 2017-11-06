@@ -12,6 +12,7 @@
 		A779DFA01FB0A00F00F32C8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A779DF9E1FB0A00F00F32C8F /* Main.storyboard */; };
 		A779DFA21FB0A00F00F32C8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A779DFA11FB0A00F00F32C8F /* Assets.xcassets */; };
 		A779DFA51FB0A00F00F32C8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A779DFA31FB0A00F00F32C8F /* LaunchScreen.storyboard */; };
+		A779DFAD1FB0ABCE00F32C8F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779DFAC1FB0ABCE00F32C8F /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A779DFA11FB0A00F00F32C8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A779DFA41FB0A00F00F32C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A779DFA61FB0A00F00F32C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A779DFAC1FB0ABCE00F32C8F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				A779DF9A1FB0A00F00F32C8F /* AppDelegate.swift */,
 				A779DF9C1FB0A00F00F32C8F /* ViewController.swift */,
+				A779DFAC1FB0ABCE00F32C8F /* CategoryCell.swift */,
 				A779DF9E1FB0A00F00F32C8F /* Main.storyboard */,
 				A779DFA11FB0A00F00F32C8F /* Assets.xcassets */,
 				A779DFA31FB0A00F00F32C8F /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			files = (
 				A779DF9D1FB0A00F00F32C8F /* ViewController.swift in Sources */,
 				A779DF9B1FB0A00F00F32C8F /* AppDelegate.swift in Sources */,
+				A779DFAD1FB0ABCE00F32C8F /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
