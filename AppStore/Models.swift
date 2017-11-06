@@ -39,6 +39,7 @@ class AppCategory: NSObject {
         let telepaintApp = App()
         telepaintApp.name = "Telepaint"
         telepaintApp.category = "Games"
+        telepaintApp.imageName = "telepaint"
         telepaintApp.price = NSNumber(value: 2.99)
         
         bestNewGamesApps.append(telepaintApp)
