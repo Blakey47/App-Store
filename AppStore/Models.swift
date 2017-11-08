@@ -12,6 +12,60 @@ class AppCategory: NSObject {
     
     var name: String?
     var apps: [App]?
+    var type: String?
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        if key == "apps" {
+            
+            apps = [App]()
+            for dict in value as! [[String: AnyObject]] {
+                let app = App()
+                app.setValuesForKeys(dict)
+                apps?.append(app)
+            }
+            
+        } else {
+            super.setValue(value, forKey: key)
+        }
+    }
+    
+    static func fetchFeaturedApps(completionHandler: @escaping ([AppCategory]) -> ()) {
+        
+        let urlString = URL(string: "http://api.letsbuildthatapp.com/appstore/featured")
+        let request = NSMutableURLRequest(url: urlString!)
+        
+        URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            
+            do {
+                
+                let json = try(JSONSerialization.jsonObject(with: data!, options: .mutableContainers)) as! [String: AnyObject]
+                
+                var appCategories = [AppCategory]()
+                
+                for dict in json["categories"] as! [[String: AnyObject]] {
+                    let appCategory = AppCategory()
+                    appCategory.setValuesForKeys(dict)
+                    appCategories.append(appCategory)
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(appCategories)
+                }
+                
+                print(appCategories)
+                
+            } catch let err {
+                print(err)
+            }
+            
+        }.resume()
+        
+    }
     
     static func sampleAppCategories() -> [AppCategory] {
         
